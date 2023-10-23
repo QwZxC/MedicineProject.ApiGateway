@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  medicineproject.apigateway:
+    image: yantar/medicineproject-apigateway
+    build:
+      context: .
+      dockerfile: MedicineProject.ApiGateway/Dockerfile

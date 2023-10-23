@@ -1,0 +1,133 @@
+{
+  "Routes": [
+    //authservice
+    {
+      "DownstreamPathTemplate": "/api/Accounts/login-patient",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "authservice",
+          "Port": 5001
+        }
+      ],
+      "UpstreamPathTemplate": "/api-gateway/login-patient",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Accounts/login-doctor",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "authservice",
+          "Port": 5001
+        }
+      ],
+      "UpstreamPathTemplate": "/api-gateway/login-doctor",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Accounts/register",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "authservice",
+          "Port": 5001
+        }
+      ],
+      "UpstreamPathTemplate": "/api-gateway/register",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Accounts/refresh-token",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "authservice",
+          "Port": 5001
+        }
+      ],
+      "UpstreamPathTemplate": "/api-gateway/refresh-token",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Accounts/revoke/{username}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "authservice",
+          "Port": 5001
+        }
+      ],
+      "UpstreamPathTemplate": "/api-gateway/revoke/{username}",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Accounts/revoke-all",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "authservice",
+          "Port": 5001
+        }
+      ],
+      "UpstreamPathTemplate": "/api-gateway/revoke-all",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+
+    //placeService
+    {
+      "DownstreamPathTemplate": "/api/Places",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "placeservice",
+          "Port": 5002
+        }
+      ],
+      "UpstreamPathTemplate": "/api-gateway/Places",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    //appointmentservice
+    {
+      "DownstreamPathTemplate": "/api/Appointments",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "placeservice",
+          "Port": 5003
+        }
+      ],
+      "UpstreamPathTemplate": "/api-gateway/Appointments",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    // hospitalservice
+    {
+      "DownstreamPathTemplate": "/api/hospitals",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "placeservice",
+          "Port": 5004
+        }
+      ],
+      "UpstreamPathTemplate": "/api-gateway/hospitals",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/hospitals/{id:long}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "hospitalservice",
+          "Port": 5004
+        }
+      ],
+      "UpstreamPathTemplate": "/api-gateway/hospitals/{id:long}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ]
+    }
+
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:5000"
+  }
+}
